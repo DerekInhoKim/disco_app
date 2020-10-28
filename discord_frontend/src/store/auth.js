@@ -12,7 +12,7 @@ export const actions = {
   updateTokenValue
 }
 //Thunk to make a fetch call to see if our user exists.
-const tryLogin = () => {
+export const tryLogin = () => {
   return async (dispatch, getState) => {
     const { auth: {email, password} } = getState();
     const response = await fetch('http://localhost:8000/api/session', {
@@ -20,23 +20,52 @@ const tryLogin = () => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({email, password})
     });
-    try {
-      if(response.status >= 200 && response.status < 400) {
+      //debugger won't be hit
+      debugger;
+      if(response.ok) {
         const data = await response.json();
-        console.log("dataToken", data.token)
         dispatch(updateTokenValue(data.token))
         window.localStorage.setItem('USER_TOKEN', data.token)
       } else {
         console.error('Bad response')
       }
-    } catch (e) {
-      console.error(e)
-    }
   }
 }
 
+// export const getToken = async (email, password) => {
+//   const response = await fetch('http://localhost:8000/session', {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ email, password }),
+//   });
+
+//   if (response.ok) {
+//     const { token } = await response.json();
+//     window.localStorage.setItem("token", token);
+//     return token;
+//   }
+// };
+
+
+export const logout = () => {
+  return async (dispatch, getState) => {
+    const { auth: { token } } = getState();
+    const response = await fetch('http://localhost:8000/api/session', {
+      method: 'delete',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (response.status >= 200 && response.status < 400) {
+      window.localStorage.removeItem('USER_TOKEN');
+      dispatch(updateTokenValue(null));
+    }
+  }
+
+}
+
 export const thunks = {
-  tryLogin
+  tryLogin,
+  logout
 }
 
 const initialState = {
