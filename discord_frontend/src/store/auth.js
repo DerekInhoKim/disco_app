@@ -1,3 +1,5 @@
+import { apiUrl } from '../config'
+
 const UPDATE_EMAIL_VALUE = 'discord/auth/UPDATE_EMAIL_VALUE'
 const UPDATE_PASSWORD_VALUE = 'discord/auth/UPDATE_PASSWORD_VALUE'
 const UPDATE_TOKEN_VALUE = 'discord/auth/UPDATE_TOKEN_VALUE'
@@ -15,7 +17,8 @@ export const actions = {
 export const tryLogin = () => {
   return async (dispatch, getState) => {
     const { auth: {email, password} } = getState();
-    const response = await fetch('http://localhost:8000/api/session', {
+    // debugger;
+    const response = await fetch(`${apiUrl}/session`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({email, password})
@@ -50,7 +53,7 @@ export const tryLogin = () => {
 export const logout = () => {
   return async (dispatch, getState) => {
     const { auth: { token } } = getState();
-    const response = await fetch('http://localhost:8000/api/session', {
+    const response = await fetch(`${apiUrl}/session`, {
       method: 'delete',
       headers: { Authorization: `Bearer ${token}` },
     });
