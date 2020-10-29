@@ -13,6 +13,7 @@ export const actions = {
   updatePasswordValue,
   updateTokenValue
 }
+
 //Thunk to make a fetch call to see if our user exists.
 export const tryLogin = () => {
   return async (dispatch, getState) => {
@@ -35,19 +36,19 @@ export const tryLogin = () => {
   }
 }
 
-// export const getToken = async (email, password) => {
-//   const response = await fetch('http://localhost:8000/session', {
-//     method: "PUT",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ email, password }),
-//   });
+export const getToken = async (email, password) => {
+  const response = await fetch(`${apiUrl}/session`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
 
-//   if (response.ok) {
-//     const { token } = await response.json();
-//     window.localStorage.setItem("token", token);
-//     return token;
-//   }
-// };
+  if (response.ok) {
+    const { token } = await response.json();
+    window.localStorage.setItem("token", token);
+    return token;
+  }
+};
 
 
 export const logout = () => {

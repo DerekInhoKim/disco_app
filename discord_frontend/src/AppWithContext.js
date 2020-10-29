@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import App from './App';
+import UserContext from './UserContext'
+import AppRefactored from './AppRefactored';
 
 const AppWithContext = (props) => {
   const [token, setToken] = useState('')
@@ -15,14 +16,14 @@ const AppWithContext = (props) => {
 
   const value = {
     token,
-    setToken
+    setToken,
   }
 
   return (
-    // <UserContext.Provider value={value}>
-      <App />
-    // {/* </UserContext.Provider> */}
-  )
-}
+    <UserContext.Provider value={value}>
+      <AppRefactored />
+    </UserContext.Provider>
+  );
+};
 
-export default AppWithContext
+export default AppWithContext;
