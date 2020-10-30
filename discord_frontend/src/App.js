@@ -1,35 +1,42 @@
-// import React from 'react';
-// import { Route, Switch } from 'react-router'
-// import { connect } from 'react-redux'
-// import { BrowserRouter } from 'react-router-dom'
-// import HomePage from './components/HomePage'
-// import LoginForm from './components/LoginForm'
-// // import Navigation from './components/Navigation'
-// import Theme from './theme/Theme'
-// import NavBar from './components/NavBar'
-// import ProtectedRoute from './ProtectedRoute'
-// import SignUpForm from './components/SignupForm';
+import React, { useEffect, useContext } from 'react';
+import { Route, Switch } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+import HomePage from './components/HomePage'
+import LoginForm from './components/LoginForm'
+// import Navigation from './components/Navigation'
+import Theme from './theme/Theme'
+import NavBar from './components/NavBar'
+import ProtectedRoute from './ProtectedRoute'
+import SignUpForm from './components/SignupForm';
+import UserContext from './UserContext';
 
-// function App(props) {
-//   return (
-//     <BrowserRouter >
-//       {/* <Navigation /> */}
-//       <Theme>
-//         <NavBar />
-//       </Theme>
-//       <Switch>
-//         <ProtectedRoute isLoggedIn={props.token} path="/" exact={true} component={HomePage} />
-//         <Route path="/signup" exact={true} component={SignUpForm}/>
-//         <Route path="/login" exact={true} component={LoginForm} />
-//       </Switch>
-//     </BrowserRouter>
-//   );
-// }
+const App = () => {
+  const {token, setToken} = useContext(UserContext)
 
-// const mapStateToProps = state => {
-//   return {
-//     token: state.auth.token,
-//   }
-// }
+  useEffect(() => {
+    (async() => {
+      const userToken = window.localStorage.getItem("USER_TOKEN")
+      if(userToken){
+        setToken(userToken)
+      }
+    })()
+  }, [setToken])
 
-// export default connect(mapStateToProps)(App);
+  const needLogin = !token
+
+  // debugger
+  return (
+    <BrowserRouter >
+      <Theme>
+        <NavBar />
+      </Theme>
+      <Switch>
+        <ProtectedRoute needLogin={needLogin} path="/" exact={true}><HomePage /></ProtectedRoute>
+        <Route path="/signup" exact={true} component={SignUpForm}/>
+        <Route path="/login" exact={true} component={LoginForm} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+export default App;

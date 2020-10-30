@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './UserContext'
-import AppRefactored from './AppRefactored';
+import App from './App';
 
 const AppWithContext = (props) => {
   const [token, setToken] = useState('')
@@ -21,7 +21,7 @@ const AppWithContext = (props) => {
 
   return (
     <UserContext.Provider value={value}>
-      <AppRefactored />
+      <App />
     </UserContext.Provider>
   );
 };

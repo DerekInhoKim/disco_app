@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
-import auth from './auth'
+import auth from '../actions/auth'
 // import authtest from './authtest'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

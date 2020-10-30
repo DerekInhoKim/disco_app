@@ -20,13 +20,17 @@ const NavBar = (props) => {
   if(!token){
     return (
       <AppBar position="static" className={classes.navbar}>
-        <h1>SimpCord</h1>
+        <div className="navbar-header-container">
+          <h1>DomerCord</h1>
+        </div>
       </AppBar>
     )
   } else {
     return (
       <AppBar position="static" className={classes.navbar}>
-        <h1>SimpCord</h1>
+        <div className="navbar-header-container">
+          <h1>DomerCord</h1>
+        </div>
         <Logout />
       </AppBar>
     )
