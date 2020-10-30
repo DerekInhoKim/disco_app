@@ -1,20 +1,16 @@
-import React, { useContext } from 'react'
-import { Redirect } from 'react-router-dom'
-import UserContext from '../UserContext'
+import React from 'react'
+import { useDispatch } from "react-redux";
+import { logout } from '../store/actions/auth'
+
 
 
 const Logout = () => {
-  const { token, setToken } = useContext(UserContext)
-
+  const dispatch = useDispatch()
   const handleClick = () => {
-    window.localStorage.setItem("USER_TOKEN", "")
-    window.localStorage.setItem("USER_ID", "")
-    setToken('');
+    dispatch(logout())
+
   }
 
-  if(!token){
-    return <Redirect to="/login"/>
-  }
 
   return (
     <div id="logout-button-container">

@@ -1,18 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom'
-import { getToken } from '../store/actions/auth'
-import UserContext from '../UserContext';
-
+// import { getToken } from '../store/actions/auth'
+import { login } from '../store/actions/auth';
+import { useDispatch } from "react-redux";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('')
-  const [password, setpassword] = useState('')
-  const {token, setToken} = useContext(UserContext)
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch();
+  // const {token, setToken} = useContext(UserContext)
 
   const handleSubmit = async (e) => {
+    // debugger
     e.preventDefault();
-    const token = await getToken(email, password);
-    setToken(token)
+    // console.log("here")
+    dispatch(login(email, password))
   }
 
   const updateEmail = (e) => {
@@ -20,8 +22,10 @@ const LoginForm = (props) => {
   }
 
   const updatePassword = (e) => {
-    setpassword(e.target.value)
+    setPassword(e.target.value)
   }
+
+  const token = window.localStorage.getItem("USER_TOKEN")
 
   if(token){
     return <Redirect to="/"/>

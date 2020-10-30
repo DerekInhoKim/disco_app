@@ -1,15 +1,23 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
-const ProtectedRoute = (props) => {
-  return (<Route render={() => {
-    // debugger
+export const PrivateRoute = ({component: Component, ...rest}) => {
+  return (<Route
+    {...rest}
+    render={(props) => {
     return (
-      props.needLogin === true
+      rest.needLogin === true
       ? <Redirect to='/login' />
-      : props.children
+      : <Component {...props} />
     )
   }}/>)
 }
 
-export default ProtectedRoute
+export const ProtectedRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      rest.needLogin !== true ? <Redirect to="/" /> : <Component {...props} />
+    }
+  />
+);

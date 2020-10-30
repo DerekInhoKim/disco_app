@@ -1,28 +1,29 @@
-import React, { useEffect, useContext } from 'react';
-import { Route, Switch } from 'react-router'
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, Redirect } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import LoginForm from './components/LoginForm'
 // import Navigation from './components/Navigation'
 import Theme from './theme/Theme'
 import NavBar from './components/NavBar'
-import ProtectedRoute from './ProtectedRoute'
+import { PrivateRoute } from './ProtectedRoute'
 import SignUpForm from './components/SignupForm';
-import UserContext from './UserContext';
+import { loadToken } from './store/actions/auth'
+import { useDispatch, useSelector } from 'react-redux';
 
-const App = () => {
-  const {token, setToken} = useContext(UserContext)
+const App = ({needLogin, loadToken}) => {
+  const [loaded, setLoaded] = useState(false)
+
 
   useEffect(() => {
-    (async() => {
-      const userToken = window.localStorage.getItem("USER_TOKEN")
-      if(userToken){
-        setToken(userToken)
-      }
-    })()
-  }, [setToken])
+    setLoaded(true);
+    loadToken();
+  }, [loadToken]);
 
-  const needLogin = !token
+
+  if(!loaded) {
+    return null;
+  }
 
   // debugger
   return (
@@ -31,12 +32,19 @@ const App = () => {
         <NavBar />
       </Theme>
       <Switch>
-        <ProtectedRoute needLogin={needLogin} path="/" exact={true}><HomePage /></ProtectedRoute>
-        <Route path="/signup" exact={true} component={SignUpForm}/>
+        <PrivateRoute needLogin={needLogin} path="/" exact={true} component={HomePage} />
         <Route path="/login" exact={true} component={LoginForm} />
+        <Route path="/signup" exact={true} component={SignUpForm}/>
+        <Redirect to="/" />
       </Switch>
     </BrowserRouter>
   );
 }
 
-export default App;
+const AppContainer = () => {
+  const needLogin = useSelector((state) => !state.auth.token);
+  const dispatch = useDispatch();
+  return <App needLogin={needLogin} loadToken={() => dispatch(loadToken())} />;
+};
+
+export default AppContainer;
