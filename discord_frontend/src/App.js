@@ -10,6 +10,14 @@ import { PrivateRoute } from './ProtectedRoute'
 import SignUpForm from './components/SignupForm';
 import { loadToken } from './store/actions/auth'
 import { useDispatch, useSelector } from 'react-redux';
+import io from 'socket.io-client'
+import {baseUrl} from'./config'
+//Establishes the connection for the server
+const socket = io.connect(baseUrl)
+
+socket.on('error', (error) => {
+  console.error(error)
+})
 
 const App = ({needLogin, loadToken}) => {
   const [loaded, setLoaded] = useState(false)
@@ -26,13 +34,14 @@ const App = ({needLogin, loadToken}) => {
   }
 
   // debugger
+  //Problem in private route as component is no longer being passed in.
   return (
     <BrowserRouter >
       <Theme>
         <NavBar />
       </Theme>
       <Switch>
-        <PrivateRoute needLogin={needLogin} path="/" exact={true} component={HomePage} />
+        <PrivateRoute needLogin={needLogin} socket={socket} path="/" exact={true} component={HomePage} />
         <Route path="/login" exact={true} component={LoginForm} />
         <Route path="/signup" exact={true} component={SignUpForm}/>
         <Redirect to="/" />

@@ -29,7 +29,7 @@ const NavBar = (props) => {
     return (
       <AppBar position="static" className={classes.navbar}>
         <div className="navbar-header-container">
-          <h1>DomerCord</h1>
+          <h1>Disco</h1>
         </div>
         <Logout />
       </AppBar>

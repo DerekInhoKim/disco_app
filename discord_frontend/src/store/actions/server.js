@@ -1,4 +1,4 @@
-import {apiUrl} from '../config'
+import {apiUrl} from '../../config'
 
 export const LOAD_SERVER = "discord/servers/LOAD";
 export const REMOVE_SERVER = "discord/servers/REMOVE"
@@ -14,6 +14,8 @@ export const removeServer = (serverId) => ({type: REMOVE_SERVER, serverId});
 //setCurrentServer must be passed in a serverId
 export const setCurrentServer = (serverId) => ({type: SET_CURRENT_SERVER, serverId});
 
+
+//Can be dispatched with the correct data to create a server.
 export const createServer = (data) => async (dispatch, getState) => {
   const {
     auth: { token },
@@ -22,11 +24,12 @@ export const createServer = (data) => async (dispatch, getState) => {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`
-    }
+    },
+    body: JSON.stringify({})
   })
   if(response.ok){
     const server = await response.json()
-    const userId = server.userId
+    const userId = localStorage.getItem("USER_ID")
     const serverId = server.serverId
     const connectionResponse = await fetch(`${apiUrl}/serverUsers`, {
       method: "POST",

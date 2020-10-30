@@ -8,7 +8,7 @@ export const PrivateRoute = ({component: Component, ...rest}) => {
     return (
       rest.needLogin === true
       ? <Redirect to='/login' />
-      : <Component {...props} />
+      : <Component {...props } socket={rest.socket} />
     )
   }}/>)
 }
