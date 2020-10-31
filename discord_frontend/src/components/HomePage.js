@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { addJoinedChannel } from '../store/actions/channels'
 import {addMessage} from '../store/actions/messages'
+import { setUpUser } from '../store/actions/users'
 import MessageList from './MessageList'
 import ChannelButtons from './ChannelButtons'
 import SendMessageForm from './SendMessageForm'
@@ -10,14 +11,24 @@ import SendMessageForm from './SendMessageForm'
 function HomePage({socket}){
   // const socker = socket
   // console.log("socket", socket)
-  const userName = 'demotester'
+  //Use the User slice of state to grab the userName from the store
 
+  const currentUser = useSelector(state => state.users.user)
+  const userName = currentUser.userName
   //currentChannel will be the id of a current channel which gets set into the state, when someone selects a new channel
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const joinedChannels = useSelector(state => state.channels.joinedChannels)
   const dispatch = useDispatch()
 
   //Whenever a currentChannel is changes in the store, send a join message to the server to join the new server.
+  useEffect(() => {
+    if(!currentUser){
+      const userId = window.localStorage.getItem("USER_ID")
+      debugger
+      dispatch(setUpUser(userId))
+    }
+  }, [])
+
   useEffect(() => {
     if(currentChannel) {
       socket.emit('join', currentChannel)

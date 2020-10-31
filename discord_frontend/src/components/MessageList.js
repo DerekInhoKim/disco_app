@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getMessages, setMessages} from '../store/actions/messages'
 
 const MessageList = () => {
+  //Update to display the username of the user from the redux slice of state
   const userName = 'demoUser'
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const messages = useSelector(state => state.messages[currentChannel])

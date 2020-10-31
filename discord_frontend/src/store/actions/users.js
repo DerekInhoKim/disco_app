@@ -16,14 +16,17 @@ export const removeUser = () => {
     });
 }
 
-export const getUser = (userId) => async(dispatch, getState) => {
+export const setUpUser = (userId) => async(dispatch, getState) => {
   const {
     auth: {token}
   } = getState()
-  const user = await fetch(`${apiUrl}/users/${userId}`, {
+  const response = await fetch(`${apiUrl}/users/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
   })
+  const user = await response.json()
   dispatch(setUser(user))
+  console.log(user)
+  // debugger
 }
