@@ -2,10 +2,13 @@ import React, { useEffect, useRef } from 'react'
 import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux'
 import {getMessages, setMessages} from '../store/actions/messages'
+import {apiUrl} from '../config'
 
 const MessageList = () => {
-  //Update to display the username of the user from the redux slice of state
-  const userName = 'demoUser'
+
+  const currentUser = useSelector(state => state.users.user)
+  const userName = currentUser.userName
+
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const messages = useSelector(state => state.messages[currentChannel])
   const dispatch = useDispatch()
@@ -29,13 +32,16 @@ const MessageList = () => {
     return null;
   }
 
+
   const renderMessages = messages => {
     if (!messages) {
-        return null;
+      return null;
     }
-    return messages.map(message => {
-        // format the date with moment.js
-        const date = moment(message.createdAt).format('hh:mm:ss');
+    return messages.map((message) => {
+      // console.log(message)
+      // format the date with moment.js
+      const date = moment(message.createdAt).format('hh:mm:ss');
+
         // Render a single message
         return (
           <li ref={messageElement}  key={message.id}>

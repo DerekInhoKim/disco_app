@@ -1,4 +1,5 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles"
 import { AppBar } from "@material-ui/core"
 import Logout from './Logout'
@@ -17,11 +18,12 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = (props) => {
   const token = localStorage.getItem('USER_TOKEN')
   const classes = useStyles()
+
   if(!token){
     return (
       <AppBar position="static" className={classes.navbar}>
         <div className="navbar-header-container">
-          <h1>DomerCord</h1>
+          <h1>Disco</h1>
         </div>
       </AppBar>
     )

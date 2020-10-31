@@ -27,6 +27,19 @@ export const setUpUser = (userId) => async(dispatch, getState) => {
   })
   const user = await response.json()
   dispatch(setUser(user))
-  console.log(user)
+  // console.log(user)
   // debugger
+}
+
+export const getUser = (userId) => async(dispatch, getState) => {
+  const {
+    auth: {token}
+  } = getState()
+  const response = await fetch(`${apiUrl}/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  const user = await response.json()
+  return user
 }

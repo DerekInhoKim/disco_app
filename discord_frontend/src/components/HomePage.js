@@ -14,17 +14,19 @@ function HomePage({socket}){
   //Use the User slice of state to grab the userName from the store
 
   const currentUser = useSelector(state => state.users.user)
-  const userName = currentUser.userName
+  // debuggers
+  // const userName = "test"
   //currentChannel will be the id of a current channel which gets set into the state, when someone selects a new channel
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const joinedChannels = useSelector(state => state.channels.joinedChannels)
   const dispatch = useDispatch()
+  // const userName = currentUser.userName
 
   //Whenever a currentChannel is changes in the store, send a join message to the server to join the new server.
   useEffect(() => {
     if(!currentUser){
       const userId = window.localStorage.getItem("USER_ID")
-      debugger
+      // debugger
       dispatch(setUpUser(userId))
     }
   }, [])
@@ -60,11 +62,12 @@ function HomePage({socket}){
   // for the currentChannel
   const onSend = message => {
     // console.log(`Sending message ${message} for ${nickName} to ${currentChannel}`);
+    const userName = currentUser.userName
     socket.emit(currentChannel, {
       message,
       userName
     });
-    debugger;
+    // debugger;
   }
 
   // A helper to render the message view or a 'choose a channel' message

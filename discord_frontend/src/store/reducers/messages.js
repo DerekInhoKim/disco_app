@@ -25,7 +25,7 @@ const messagesReducer = (state = initialState, action) => {
     // This allows us to keep track of messages per channel
     case ADD_MESSAGE:
       const { message } = action;
-      debugger;
+      // debugger;
       const oldMessages = state[message.channelId]
         ? state[message.channelId]
         : [];

@@ -11,7 +11,7 @@ const SendMessageForm = ({onSend}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    debugger;
+    // debugger;
     onSend(message);
     setMessage("")
   }
