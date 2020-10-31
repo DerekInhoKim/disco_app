@@ -2,13 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux'
 import {getMessages, setMessages} from '../store/actions/messages'
-import {apiUrl} from '../config'
 
 const MessageList = () => {
-
-  const currentUser = useSelector(state => state.users.user)
-  const userName = currentUser.userName
-
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const messages = useSelector(state => state.messages[currentChannel])
   const dispatch = useDispatch()
@@ -46,7 +41,8 @@ const MessageList = () => {
         return (
           <li ref={messageElement}  key={message.id}>
             <h4 >
-              {userName}
+              User #{message.userId}
+              <br/>
               <span >{date}</span>
             </h4>
             <p >{message.message}</p>

@@ -49,7 +49,7 @@ function HomePage({socket}){
       return;
     }
     socket.on(currentChannel, ( message ) => {
-      debugger;
+      // debugger;
       //Recieved a newMessage = {}
       // console.log(`Recieved new message ${message} `)
       dispatch(addMessage(message))
