@@ -14,9 +14,17 @@ body {
 .navbar-container {
   display: flex;
   background: linear-gradient(45deg, #192841 30%, #23395d 90%);
+  height: 60px;
+}
+
+.navbar-header-container h1 {
+  font-size: 20px;
+  margin-left: 20px;
+  padding-bottom: 10px;
 }
 
 .logout-button-container {
+  margin-top: 40px;
   margin-left: 10px;
 
 }
@@ -33,9 +41,7 @@ body {
 .channel-container {
   flex-direction: column;
 }
-.message-view {
-  /* margin-top: 100px; */
-}
+
 
 .sidebar {
   display: flex;
