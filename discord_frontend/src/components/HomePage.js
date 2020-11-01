@@ -94,10 +94,15 @@ function HomePage({socket}){
   };
 
   return (
-    <main>
-    <div className="sidebar">
-      <Server />
-      <ChannelButtons/>
+    <main className="sidebar">
+    <div className="button-container">
+      <div className="server-container">
+        <Server />
+
+      </div>
+      <div className="channel-container">
+        <ChannelButtons/>
+      </div>
     </div>
     {renderMessageView()}
   </main>

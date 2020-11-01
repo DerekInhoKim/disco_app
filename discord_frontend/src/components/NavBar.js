@@ -8,10 +8,12 @@ import Logout from './Logout'
 const useStyles = makeStyles((theme) => ({
   navbar: {
     fontFamily: theme.fontFamily,
-    background: theme.gradientBackground
-  },
-  title: {
-    fontSize: '14pt'
+    background: theme.gradientBackground,
+    position: theme.stickyPosition,
+    // margin: theme.marginTop,
+    height: theme.navHeight,
+    'margin-left': '50px'
+
   }
 }))
 
@@ -21,7 +23,7 @@ const NavBar = (props) => {
 
   if(!token){
     return (
-      <AppBar position="static" className={classes.navbar}>
+      <AppBar className={"navbar-container"}>
         <div className="navbar-header-container">
           <h1>Disco</h1>
         </div>
@@ -29,11 +31,11 @@ const NavBar = (props) => {
     )
   } else {
     return (
-      <AppBar position="static" className={classes.navbar}>
+      <AppBar className={"navbar-container"}>
         <div className="navbar-header-container">
           <h1>Disco</h1>
         </div>
-        <Logout />
+        <Logout/>
       </AppBar>
     )
   }
