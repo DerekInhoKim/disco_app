@@ -4,6 +4,7 @@ import auth from './reducers/auth'
 import channels from './reducers/channels'
 import messages from './reducers/messages'
 import users from './reducers/users'
+import servers from './reducers/server'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -11,7 +12,8 @@ const reducer = combineReducers({
   auth,
   channels,
   messages,
-  users
+  users,
+  servers
 })
 
 const configureStore = (initialState) => {

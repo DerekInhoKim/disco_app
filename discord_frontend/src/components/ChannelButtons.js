@@ -5,7 +5,7 @@ import {addChannels, setCurrentChannel, getChannels } from '../store/actions/cha
 
 const ChannelButtons = () => {
   //TODO useSelector for Server, and currentServer which will be passed into getChannels
-  const serverId = 1
+  const serverId = useSelector(state => state.servers.currentServer)
   //Replace hardcoded serverId with the currentServer from state.servers.currentServer
   const channels = useSelector(state => state.channels.channels)
   const currentChannel = useSelector(state => state.channels.currentChannel)
@@ -13,11 +13,14 @@ const ChannelButtons = () => {
 
   //Fetch list of channels for a server
   useEffect(() => {
+    if(!serverId){
+      return;
+    }
     //This dispatch, will fetch from the backend all the servers that belong to a channel
     //Also will add the channels that it recieved to state.channels.channels
     dispatch(getChannels(serverId))
     //Only runs once, when the channelButtons is called
-  }, [])
+  }, [serverId])
 
   // debugger;
   const joinChannel = (channel) => {

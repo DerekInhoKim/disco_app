@@ -6,6 +6,8 @@ import { setUpUser } from '../store/actions/users'
 import MessageList from './MessageList'
 import ChannelButtons from './ChannelButtons'
 import SendMessageForm from './SendMessageForm'
+import Server from './Server'
+import {getServers, setCurrentServer } from '../store/actions/server'
 
 //How to pass in the socket from private route?
 function HomePage({socket}){
@@ -20,16 +22,22 @@ function HomePage({socket}){
   const currentChannel = useSelector(state => state.channels.currentChannel)
   const joinedChannels = useSelector(state => state.channels.joinedChannels)
   const dispatch = useDispatch()
+  const userId = window.localStorage.getItem("USER_ID")
   // const userName = currentUser.userName
 
   //Whenever a currentChannel is changes in the store, send a join message to the server to join the new server.
   useEffect(() => {
     if(!currentUser){
-      const userId = window.localStorage.getItem("USER_ID")
       // debugger
       dispatch(setUpUser(userId))
     }
   }, [])
+
+  // useEffect(() => {
+  //   //Dispatches a request to recieve all the servers for the current user using their id.
+  //   dispatch(getServers(userId))
+  //   //Only runs once, when the Server is called is called
+  // }, [])
 
   useEffect(() => {
     if(currentChannel) {
@@ -81,13 +89,14 @@ function HomePage({socket}){
         </div>
       );
     } else {
-      return <h1>Select a channel to Disco!</h1>;
+      return <h1>Select a Server and Channel to Disco!</h1>;
     }
   };
 
   return (
     <main>
     <div className="sidebar">
+      <Server />
       <ChannelButtons/>
     </div>
     {renderMessageView()}
