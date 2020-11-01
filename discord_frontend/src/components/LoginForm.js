@@ -32,20 +32,15 @@ const LoginForm = (props) => {
   }
 
   return (
+  <div className="login_form_container">
     <form className="login_form" onSubmit={handleSubmit}>
-      <div>
-        <input onChange={updateEmail} value={email} type="email" placeholder="Email" required />
-      </div>
-      <div>
-        <input onChange={updatePassword} value={password} type="password" placeholder="Password" required />
-      </div>
-      <div>
-        <button type="submit">Log in</button>
-      </div>
-      <div>
-        <p>Don't have an account? </p><a href="/signup">Sign up</a>
-      </div>
-  </form>
+      <h3>Log in to Disco</h3>
+      <input className="form_input" onChange={updateEmail} value={email} type="email" placeholder="Email" required />
+      <input className="form_input" onChange={updatePassword} value={password} type="password" placeholder="Password" required />
+      <button className="form_button" type="submit">Log in</button>
+      <p>Don't have an account? </p><a href="/signup">Sign up</a>
+    </form>
+  </div>
   )
 }
 

@@ -1,7 +1,8 @@
-import { StylesProvider } from '@material-ui/core';
+import { Avatar, StylesProvider, Tooltip } from '@material-ui/core';
 import React, {useEffect} from 'react';
 import { useDispatch, userDispatch, useSelector } from 'react-redux'
 import {getServers, setCurrentServer } from '../store/actions/server'
+import discoball from '../images/discoreal.png'
 
 const Server = () => {
   // const currentUser = useSelector(state => state.users.user)
@@ -25,14 +26,23 @@ const Server = () => {
   // console.log(channels)
   return servers.map((server) => {
     // debugger
-    console.log(server.Server.id)
     return (
-      <button
-      key={server.Server.id}
-      onClick={() => joinServer(server.Server.id)}
-      >
-        {`Server: ${server.Server.serverName}`}
-      </button>
+      <Tooltip
+      key={server.Server.serverName}
+      placement="bottom"
+      title={server.Server.serverName}>
+        <Avatar
+        // variant="rounded"
+        src={discoball}
+        alt="Discoball"
+        className="avatar_button"
+        // alt={server.Server.serverName}
+        key={server.Server.id}
+        onClick={() => joinServer(server.Server.id)}
+        >
+          {/* {`Server: ${server.Server.serverName}`} */}
+        </Avatar>
+      </Tooltip>
     )
   })
 }

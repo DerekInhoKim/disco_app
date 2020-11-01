@@ -7,6 +7,7 @@ import MessageList from './MessageList'
 import ChannelButtons from './ChannelButtons'
 import SendMessageForm from './SendMessageForm'
 import Server from './Server'
+// import '../homepage.css'
 import {getServers, setCurrentServer } from '../store/actions/server'
 
 //How to pass in the socket from private route?
@@ -56,6 +57,8 @@ function HomePage({socket}){
     if(joinedChannels.includes(currentChannel)) {
       return;
     }
+    console.log("currentChannel", currentChannel)
+    // debugger
     socket.on(currentChannel, ( message ) => {
       // debugger;
       //Recieved a newMessage = {}
@@ -63,6 +66,10 @@ function HomePage({socket}){
       dispatch(addMessage(message))
     })
     dispatch(addJoinedChannel(currentChannel))
+  }, [currentChannel, joinedChannels, socket])
+
+  useEffect(() => {
+    console.log(currentChannel, joinedChannels, socket)
   }, [currentChannel, joinedChannels, socket])
 
   // When the send button is clicked
@@ -83,9 +90,13 @@ function HomePage({socket}){
   const renderMessageView = () => {
     if (currentChannel) {
       return (
-        <div className="message-view">
-          <MessageList />
-          <SendMessageForm onSend={onSend} />
+        <div className="message_view_container">
+          <div className="message_view">
+            <MessageList />
+          </div>
+          <div className="input_view">
+            <SendMessageForm onSend={onSend} />
+          </div>
         </div>
       );
     } else {
@@ -94,18 +105,19 @@ function HomePage({socket}){
   };
 
   return (
-    <main className="sidebar">
-    <div className="button-container">
-      <div className="server-container">
-        <Server />
-
+    <div className="sidebar">
+      <div className="button-container">
+        <div className="server-container">
+          <Server />
+        </div>
+        <div className="channel-container">
+          <ChannelButtons/>
+        </div>
       </div>
-      <div className="channel-container">
-        <ChannelButtons/>
+      <div className="messages_container">
+        {renderMessageView()}
       </div>
     </div>
-    {renderMessageView()}
-  </main>
   )
 }
 

@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import { useDispatch, userDispatch, useSelector } from 'react-redux'
 import {addChannels, setCurrentChannel, getChannels } from '../store/actions/channels'
 
+
 const ChannelButtons = () => {
   //TODO useSelector for Server, and currentServer which will be passed into getChannels
   const serverId = useSelector(state => state.servers.currentServer)
@@ -30,12 +31,13 @@ const ChannelButtons = () => {
   // console.log(channels)
   return channels.map((channel) => {
     return (
-      <button
+      <div
+      className="channel_button"
       key={channel.id}
       onClick={() => joinChannel(channel.id)}
       >
         {`#${channel.channelName}`}
-      </button>
+      </div>
     )
   })
 }

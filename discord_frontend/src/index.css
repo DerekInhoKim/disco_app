@@ -1,51 +1,290 @@
 /* TODO Add site wide styles */
 body {
   margin: 0;
+  background-color: #424242;
+  overflow: hidden;
 }
+
+.login_form_container {
+  display: flex;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  margin-top: 200px;
+  background-color: #333333;
+  border: 2px solid black;
+  height: 500px;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
 
 .login_form {
-  margin: 10px;
+  display:flex;
+  flex-direction: column;
 }
 
-/* .navbar-header-container {
+.form_input{
+  margin: 5px;
+  padding: 10px;
+  width: 400px;
 
+}
+
+/* .form_button{
+  align-self: center;
 } */
 
-.navbar-container {
-  display: flex;
-  background: linear-gradient(45deg, #192841 30%, #23395d 90%);
-  height: 60px;
+.form_button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  margin-top: 30px;
+  outline: none;
+  border: none;
+  background-color: #2a2a2a;
+  opacity: 0.7;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
 }
 
-.navbar-header-container h1 {
+.form_button:hover {
+  background-color: #2a2a2a;
+  opacity: 0.8;
+}
+
+.navbar-header-container {
+  cursor: text;
+}
+
+.logo {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   margin-left: 20px;
-  padding-bottom: 10px;
+  text-decoration: none;
+  /* pointer-events: none; */
+}
+
+
+.navbar{
+  display: flex;
+  position: fixed;
+  background: #2c2f33;
+  border: 2px solid #23272a;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+.navbar-header-container h1 {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  margin-left: 20px;
+  /* top: 50%; */
+  /* padding-bottom: 10px; */
 }
 
 .logout-button-container {
-  margin-top: 40px;
-  margin-left: 10px;
+  margin: 5px;
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #99aab5;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
 
+}
+
+.logout-button-container:hover {
+  background-color: #99aab5;
+  opacity: .5;
 }
 
 .button-container {
   display: flex;
-  flex-direction: column;
+  /* width: 300px; */
+  /* flex-direction: column; */
 }
 
 .server-container {
+  display: flex;
+  background-color: 	#23272a;
+  padding: 20px;
   flex-direction: column;
+  align-items: center;
+  width: 100px;
+
+}
+
+.signupbutton {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  margin-top: 30px;
+  outline: none;
+  border: none;
+  background-color: #2a2a2a;
+  opacity: 0.7;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.signup-input {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  margin: 10px;
+}
+
+.signupform-container {
+  display: flex;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  margin-top: 100px;
+  background-color: #333333;
+  border: 2px solid black;
+  height: 850px;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiAvatar-root.avatar_button  {
+  margin: 25px;
+  height: 55px;
+  width: 55px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.message_content {
+  /* font-size: 100px; */
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+
+}
+
+
+.message_header {
+  font-style: italic;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+.channel_button {
+  display: flex;
+  padding: 20px;
+  margin: 5px;
+  width: 100%;
+  color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.channel_button:hover {
+  background-color: #2c2f33;
+  opacity: .5;
+}
+
+.messages_container {
+  margin: 20px;
+  position: relative;
+  left: 30px;
+  flex: 1;
+
+
 }
 
 .channel-container {
+  display: flex;
+  background-color:	#2c2f33;
+  border: 2px solid #23272a;
+  padding: 20px;
   flex-direction: column;
+  align-items: center;
+  width: 150px;
 }
 
 
 .sidebar {
   display: flex;
+  margin-top: 40px;
+  height: 100vh;
+
+}
+
+.message_view_container {
+  display: flex;
+  height: 800px;
   flex-direction: column;
+}
+
+.input_view {
+  position: fixed;
+  top: 850px;
+}
+
+.chat__input {
+  color: lightgray;
+  display: flex;
   position: absolute;
-  margin-top: 100px;
+  /* bottom: 0; */
+  width: 1000px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 20px;
+  border-radius: 5px;
+  margin: 20px;
+  border-top: 1px solid gray;
+  background-color: #474b52;
+  overflow-wrap: break-word;
+}
+
+.channel_name {
+  color: white;
+  font-size: 40px;
+}
+
+.message_view {
+  display: flex;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.chat__input > form > input {
+  padding: 15px;
+  background: transparent;
+  align-self: center;
+  border: none;
+  width: 100%;
+  outline-width: 0;
+  color: white;
+  font-size: large;
+}
+
+
+.chat__input > form {
+  flex: 1;
+}
+
+.chat__inputButton {
+  display: none;
+
 }

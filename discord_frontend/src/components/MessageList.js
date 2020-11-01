@@ -39,14 +39,14 @@ const MessageList = () => {
 
         // Render a single message
         return (
-          <li ref={messageElement}  key={message.id}>
-            <h4 >
-              User #{message.userId}
-              <br/>
-              <span >{date}</span>
+          <ul ref={messageElement}  key={message.id}>
+            <h4 className="message_header">
+              User #{message.userId} @ {date}:
             </h4>
-            <p >{message.message}</p>
-          </li>
+            <div className="message_content">
+              {message.message}
+            </div>
+          </ul>
         );
     })
   };

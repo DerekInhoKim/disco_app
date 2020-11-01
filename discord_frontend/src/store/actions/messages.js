@@ -30,6 +30,7 @@ export const getMessages = (channelId) => async (dispatch, getState) => {
     throw new Error ("Messages were not recieved")
   }
   const channel = await response.json()
+  //channel.Messages is an array of messages
   dispatch(setMessages(channel.Messages, channel))
 
 }

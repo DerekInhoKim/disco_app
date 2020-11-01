@@ -21,10 +21,12 @@ const SendMessageForm = ({onSend}) => {
   }
 
   return(
-    <form onSubmit={onSubmit}>
-      <input onChange={onChange} type="text" value={message}></input>
-      <button type="submit">Send</button>
-    </form>
+    <div className="chat__input">
+      <form onSubmit={onSubmit}>
+        <input className="message_input" onChange={onChange} type="text" value={message}></input>
+        <div className="chat__inputButton" type="submit">Send</div>
+      </form>
+    </div>
   )
 }
 
