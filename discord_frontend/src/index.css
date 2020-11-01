@@ -257,6 +257,27 @@ body {
   overflow-wrap: break-word;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  min-height: 600px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track-piece{
+  height: 40px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #99aab5;
+  border-radius: 5px;
+}
+
 .channel_name {
   color: white;
   font-size: 40px;
@@ -265,7 +286,8 @@ body {
 .message_view {
   display: flex;
   position: relative;
-  overflow-y: scroll;
+  width: 1500px;
+  overflow-y: auto;
 }
 
 .chat__input > form > input {
