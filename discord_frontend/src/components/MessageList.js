@@ -52,7 +52,7 @@ const MessageList = () => {
   };
   // Render the component
   return (
-    <ul >
+    <ul>
         {renderMessages(messages)}
     </ul>
   );
