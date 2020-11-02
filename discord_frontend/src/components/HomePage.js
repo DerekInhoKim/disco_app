@@ -57,7 +57,7 @@ function HomePage({socket}){
     if(joinedChannels.includes(currentChannel)) {
       return;
     }
-    console.log("currentChannel", currentChannel)
+    // console.log("currentChannel", currentChannel)
     // debugger
     socket.on(currentChannel, ( message ) => {
       // debugger;
@@ -68,9 +68,9 @@ function HomePage({socket}){
     dispatch(addJoinedChannel(currentChannel))
   }, [currentChannel, joinedChannels, socket])
 
-  useEffect(() => {
-    console.log(currentChannel, joinedChannels, socket)
-  }, [currentChannel, joinedChannels, socket])
+  // useEffect(() => {
+  //   console.log(currentChannel, joinedChannels, socket)
+  // }, [currentChannel, joinedChannels, socket])
 
   // When the send button is clicked
   // emit a message acorss the socket
@@ -100,7 +100,7 @@ function HomePage({socket}){
         </div>
       );
     } else {
-      return <h1>Select a Server and Channel to Disco!</h1>;
+      return <h1 class="start-message">Select a Server and Channel to Disco!</h1>;
     }
   };
 
@@ -108,9 +108,11 @@ function HomePage({socket}){
     <div className="sidebar">
       <div className="button-container">
         <div className="server-container">
+          <div className="server-title">Servers</div>
           <Server />
         </div>
         <div className="channel-container">
+          <div className="channel-title">Channels</div>
           <ChannelButtons/>
         </div>
       </div>

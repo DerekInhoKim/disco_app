@@ -1,7 +1,7 @@
 /* TODO Add site wide styles */
 body {
   margin: 0;
-  background-color: #424242;
+  background-color: #424549;
   overflow: hidden;
 }
 
@@ -20,7 +20,19 @@ body {
 
 }
 
+.server-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: 35px;
+  border-bottom: 2px solid #424549;
+}
 
+.channel-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: 35px;
+  border-bottom: 2px solid #424549;
+}
 
 .login_form {
   display:flex;
@@ -59,15 +71,23 @@ body {
 }
 
 .navbar-header-container {
-  cursor: text;
+  display: flex;
+  cursor: pointer;
+}
+
+.start-message{
+  color: white;
+
 }
 
 .logo {
+  display: inline-block;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
-  margin-left: 20px;
+  margin-top: 20px;
   text-decoration: none;
+  cursor: pointer;
   /* pointer-events: none; */
 }
 
@@ -174,8 +194,16 @@ body {
   cursor: pointer;
 }
 
+.welcome {
+  color: white;
+  background-color: #7289da;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .message_content {
   /* font-size: 100px; */
+  font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 
@@ -184,7 +212,8 @@ body {
 
 .message_header {
   font-style: italic;
-  font-size: 25px;
+  border-bottom: 1px solid white;
+  font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
@@ -229,9 +258,13 @@ body {
 
 .sidebar {
   display: flex;
-  margin-top: 40px;
+  margin-top: 50px;
   height: 100vh;
 
+}
+
+.disco-ball{
+  padding: 15px;
 }
 
 .message_view_container {
@@ -318,5 +351,5 @@ body {
 
 .server-name {
   color: white;
-  margin-left: 30px;
+  margin-left: 20px;
 }

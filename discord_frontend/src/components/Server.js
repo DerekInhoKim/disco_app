@@ -28,10 +28,6 @@ const Server = () => {
     // debugger
     return (
       <div>
-        <Tooltip
-          key={server.Server.serverName}
-          placement="bottom"
-          title={server.Server.serverName}>
             <Avatar
             // variant="rounded"
             src={discoball}
@@ -42,7 +38,6 @@ const Server = () => {
             onClick={() => joinServer(server.Server.id)}
             >
             </Avatar>
-        </Tooltip>
         <div className="server-name">{server.Server.serverName}</div>
       </div>
     )
