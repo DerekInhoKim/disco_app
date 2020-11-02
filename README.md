@@ -2,6 +2,8 @@
 
 Disco is a simplified clone of the popular app Discord.
 
+<br>
+
 MVP
 
 The core features of this project are as follows:
