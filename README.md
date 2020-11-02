@@ -1,6 +1,6 @@
 # discord_clone_frontend
 
-Disco is a clone of the popular app Discord.
+Disco is a simplified clone of the popular app Discord.
 
 MVP
 
