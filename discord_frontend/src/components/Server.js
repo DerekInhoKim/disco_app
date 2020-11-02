@@ -27,22 +27,24 @@ const Server = () => {
   return servers.map((server) => {
     // debugger
     return (
-      <Tooltip
-      key={server.Server.serverName}
-      placement="bottom"
-      title={server.Server.serverName}>
-        <Avatar
-        // variant="rounded"
-        src={discoball}
-        alt="Discoball"
-        className="avatar_button"
-        // alt={server.Server.serverName}
-        key={server.Server.id}
-        onClick={() => joinServer(server.Server.id)}
-        >
-          {/* {`Server: ${server.Server.serverName}`} */}
-        </Avatar>
-      </Tooltip>
+      <div>
+        <Tooltip
+          key={server.Server.serverName}
+          placement="bottom"
+          title={server.Server.serverName}>
+            <Avatar
+            // variant="rounded"
+            src={discoball}
+            alt="Discoball"
+            className="avatar_button"
+            // alt={server.Server.serverName}
+            key={server.Server.id}
+            onClick={() => joinServer(server.Server.id)}
+            >
+            </Avatar>
+        </Tooltip>
+        <div className="server-name">{server.Server.serverName}</div>
+      </div>
     )
   })
 }
