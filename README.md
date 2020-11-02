@@ -3,7 +3,7 @@
 Disco is a simplified clone of the popular app Discord.
 
 <br>
-live link: 
+Live Link: 
 
 https://main.ddaqkltfscu6u.amplifyapp.com/login
 
