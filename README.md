@@ -7,6 +7,11 @@ Live Link:
 
 https://main.ddaqkltfscu6u.amplifyapp.com/login
 
+<br>
+Backend Repo:
+
+https://github.com/DerekInhoKim/discord_clone_backend
+
 ### MVP
 
 The core features of this project are as follows:
