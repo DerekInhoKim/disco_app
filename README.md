@@ -12,6 +12,11 @@ Backend Repo:
 
 https://github.com/DerekInhoKim/discord_clone_backend
 
+Demo User:
+<br>
+email: demo@discoapp.com / demo2@discoapp.com
+password: password
+
 ### MVP
 
 The core features of this project are as follows:
